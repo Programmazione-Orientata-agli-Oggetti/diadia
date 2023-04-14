@@ -119,20 +119,28 @@ public class Stanza {
 	* stampadone la descrizione, le uscite e gli eventuali attrezzi contenuti
 	* @return la rappresentazione stringa
 	*/
-    public String toString() {
-    	StringBuilder risultato = new StringBuilder();
-    	risultato.append(this.nome);
-    	risultato.append("\nUscite: ");
-    	for (String direzione : this.direzioni)
-    		if (direzione!=null)
-    			risultato.append(" " + direzione);
-    	risultato.append("\nAttrezzi nella stanza: ");
-    	for (Attrezzo attrezzo : this.attrezzi) {
-    		risultato.append(attrezzo.toString()+" ");
-    	}
-    	return risultato.toString();
-    }
+    	public String toString() {
+		StringBuilder risultato = new StringBuilder();
+		risultato.append("Ti trovi qui: \n");
+		risultato.append(this.nome);
+		risultato.append("\nUscite: ");
+		for (String direzione : this.direzioni)
+			if (direzione!=null)
+				risultato.append(direzione+" ");
+		risultato.append("\nAttrezzi nella stanza: ");
+		boolean nessunAttrezzo = false;
+		for (Attrezzo attrezzo : this.attrezzi) {
+			if(attrezzo!=null) {
+				nessunAttrezzo = true;
+				risultato.append(attrezzo.toString()+" ");
+			}
+		}
+		if(!nessunAttrezzo)
+			risultato.append("nessun attrezzo");
 
+		risultato.append("\n");
+		return risultato.toString();
+	}
     /**
 	* Controlla se un attrezzo esiste nella stanza (uguaglianza sul nome).
 	* @return true se l'attrezzo esiste nella stanza, false altrimenti.
